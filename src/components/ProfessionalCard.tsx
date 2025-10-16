@@ -1,4 +1,4 @@
-import { MapPin, Star, CheckCircle } from "lucide-react";
+import { MapPin, Star, CheckCircle, Phone, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,8 @@ interface ProfessionalCardProps {
   verified: boolean;
   projects: number;
   initials: string;
+  phone?: string;
+  email?: string;
 }
 
 const ProfessionalCard = ({
@@ -24,6 +26,8 @@ const ProfessionalCard = ({
   verified,
   projects,
   initials,
+  phone,
+  email,
 }: ProfessionalCardProps) => {
   return (
     <Card className="group cursor-pointer transition-all duration-300 hover:shadow-elegant hover:-translate-y-1">
@@ -59,6 +63,23 @@ const ProfessionalCard = ({
             {projects} projects
           </div>
         </div>
+
+        {(phone || email) && (
+          <div className="space-y-2 mb-4 pb-4 border-b">
+            {phone && (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Phone className="w-4 h-4 text-primary" />
+                <span>{phone}</span>
+              </div>
+            )}
+            {email && (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Mail className="w-4 h-4 text-primary" />
+                <span className="truncate">{email}</span>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="flex gap-2">
           <Button variant="outline" className="flex-1">
